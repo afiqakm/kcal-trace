@@ -17,6 +17,7 @@ import { api } from "~/utils/api";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 interface errorValue {
     code: string;
@@ -31,6 +32,8 @@ const TraceForm = () => {
         action,
         error,
     } = useBoundStore();
+
+    const { data: userData } = useSession();
 
     const createTrace = api.trace.createTrace.useMutation({
         onMutate: () => {
@@ -69,11 +72,12 @@ const TraceForm = () => {
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         createTrace.mutate({
             ...data,
+            userId: userData?.user?.id ?? "",
         });
     }
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                     control={form.control}
                     name="meal"

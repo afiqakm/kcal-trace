@@ -10,6 +10,7 @@ export const createTrace = protectedProcedure
     z.object({
       meal: z.string().max(50),
       kcal: z.string().max(15),
+      userId: z.string(),
     })
   )
   .mutation(({ ctx, input }) => {
@@ -19,6 +20,7 @@ export const createTrace = protectedProcedure
         kcal: input.kcal,
         createdAt: new Date(),
         updatedAt: new Date(),
+        userId: input.userId,
       },
     });
   });
