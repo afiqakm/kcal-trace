@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { protectedProcedure } from "~/server/api/trpc";
 
-export const getAllTrace = protectedProcedure
+export const getTodayTrace = protectedProcedure
     .input(
         z.object({
             userId: z.string(),
@@ -10,22 +10,22 @@ export const getAllTrace = protectedProcedure
     )
     .query(async ({ ctx, input }) => {
         try {
-            const targetDate = new Date("2024-01-23"); // Specify the target date
-
+            const targetDate = new Date(); // Specify the target date
+            targetDate.setHours(0, 0, 0, 0);
             const result = await ctx.db.trace.findMany({
                 where: {
                     userId: input.userId,
-                    // createdAt: {
-                    //     gte: targetDate, // Greater than or equal to the start of the day
-                    //     lt: new Date(targetDate.getTime() + 24 * 60 * 60 * 1000), // Less than the start of the next day
-                    // },
+                    createdAt: {
+                        gte: targetDate, // Greater than or equal to the start of the day
+                        lt: new Date(targetDate.getTime() + 24 * 60 * 60 * 1000), // Less than the start of the next day
+                    },
                 },
                 orderBy: { createdAt: "desc" },
             });
 
             // const result = await ctx.db.trace.findMany({});
 
-            // console.log(result);
+            console.log(result);
             return result; // Return the query results
         } catch (e) {
             if (e instanceof Error) throw new Error(e.message);

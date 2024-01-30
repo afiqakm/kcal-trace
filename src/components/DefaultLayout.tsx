@@ -12,12 +12,11 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
     return (
         <div className="m-6 flex flex-col gap-6">
             <Toaster position="top-center" />
-            <div className="flex justify-between items-center">
-                <ModeToggle />
+            <div className="flex justify-end items-center">
+                {/* <ModeToggle /> */}
                 {data &&
                     <Button
                         onClick={() => signOut({ callbackUrl: "/" })}
-                        variant="outline"
                     >
                         Logout
                     </Button>
