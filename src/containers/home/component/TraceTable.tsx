@@ -24,18 +24,22 @@ const TraceTable = () => {
     return (
         <Table>
             <TableHeader>
-                <TableRow className="text-center">
-                    <TableHead>Meals</TableHead>
-                    <TableHead className="text-center">Kcal</TableHead>
+                <TableRow>
+                    <TableHead className="md:text-center font-bold">Meals</TableHead>
+                    <TableHead className="text-center font-bold">Category</TableHead>
+                    <TableHead className="md:text-center font-bold">Kcal</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {data?.map((item) => (
                     <TableRow key={item.id}>
-                        <TableCell>
+                        <TableCell className="md:text-center">
                             {item.meal}
                         </TableCell>
-                        <TableCell className="text-center font-bold">
+                        <TableCell className="text-center">
+                            {item.category}
+                        </TableCell>
+                        <TableCell className="md:text-center font-bold">
                             {item.kcal}
                         </TableCell>
                     </TableRow>

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const Auth = () => {
   const router = useRouter();
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <div className="flex flex-col items-center justify-center gap-5 h-[90vh]">
       <h1>Login</h1>
       <Button
         className="h-[50px] w-[250px] gap-3 bg-indigo-500 text-slate-100 hover:bg-indigo-600"

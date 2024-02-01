@@ -19,11 +19,11 @@ const Home = () => {
     //     void router.push('/')
     // }
 
-    const baseClassName = "fixed inset-x-0 p-6 bg-secondary transition-all duration-300 ease-in-out"
+    const baseClassName = "fixed inset-x-0 p-6 bg-secondary transition-all duration-300 ease-in-out md:inset-x-[600px] md:rounded-tl-xl md:rounded-tr-xl"
     const openClassName = cn(baseClassName, "bottom-0")
     const closeClassName = cn(baseClassName, "bottom-[-300px]")
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 md:w-1/2">
             <StatCard />
             <TraceTable />
             <div className={isOpen ? openClassName : closeClassName}>

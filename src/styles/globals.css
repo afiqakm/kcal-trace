@@ -4,6 +4,7 @@
 
 body {
   background-color: hsl(var(--background));
+  background-image: url(../../public/assets/topography.svg);
 }
 
 @layer base {

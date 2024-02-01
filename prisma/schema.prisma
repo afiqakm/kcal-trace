@@ -60,9 +60,20 @@ model VerificationToken {
 model Trace {
     id        Int      @id @default(autoincrement())
     meal      String
+    category  Category @default(Other)
     kcal      String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     userId    String
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Category {
+    Breakfast
+    Lunch
+    Dinner
+    Snack
+    Drink
+    Meal
+    Other
 }

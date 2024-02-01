@@ -10,9 +10,9 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
     const { data, status } = useSession();
 
     return (
-        <div className="m-6 flex flex-col gap-6">
-            <Toaster position="top-center" />
-            <div className="flex justify-end items-center">
+        <div className="p-6 flex flex-col gap-6 h-screen md:items-center">
+            <div className="w-full flex justify-end items-center">
+                <Toaster position="top-center" />
                 {/* <ModeToggle /> */}
                 {data &&
                     <Button

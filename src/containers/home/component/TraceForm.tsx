@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
@@ -18,6 +20,8 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { Category } from "@prisma/client";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 
 interface errorValue {
     code: string;
@@ -56,6 +60,7 @@ const TraceForm = () => {
         meal: z.string().min(2, {
             message: "Meal must be at least 2 characters.",
         }),
+        category: z.nativeEnum(Category),
         kcal: z.string().min(1, {
             message: "Kcal must be at least 0.",
         })
@@ -65,6 +70,7 @@ const TraceForm = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             meal: "",
+            // category: Category.Other,
             kcal: "",
         },
     })
@@ -90,9 +96,43 @@ const TraceForm = () => {
                             <FormControl>
                                 <Input placeholder="Fried rice" {...field} />
                             </FormControl>
-                            <FormDescription>
+                            {/* <FormDescription>
                                 What did you eat/drink?
-                            </FormDescription>
+                            </FormDescription> */}
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="flex justify-between items-center">
+                                Category
+                                <FormMessage />
+                            </FormLabel>
+                            <Select
+                                onValueChange={field.onChange}
+                            // defaultValue={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Select category" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {
+                                        Object.values(Category).map((category) => (
+                                            <SelectItem
+                                                key={category}
+                                                value={category}
+                                            >
+                                                {category}
+                                            </SelectItem>
+                                        ))
+                                    }
+                                </SelectContent>
+                            </Select>
                         </FormItem>
                     )}
                 />
@@ -113,9 +153,9 @@ const TraceForm = () => {
                                     {...field}
                                 />
                             </FormControl>
-                            <FormDescription>
+                            {/* <FormDescription>
                                 How much calories does your meal have?
-                            </FormDescription>
+                            </FormDescription> */}
                         </FormItem>
                     )}
                 />
