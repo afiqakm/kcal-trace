@@ -43,6 +43,7 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
+    kcalLimit     Int       @default(0)
     accounts      Account[]
     sessions      Session[]
     traces        Trace[]

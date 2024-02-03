@@ -3,9 +3,11 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 import { traceSlice } from "./trace";
+import { uiSlice } from "./ui";
 import { type ITraceSlice } from "./trace/types";
+import { type IUiSlice } from "./ui/types";
 
-export type BoundState = ITraceSlice;
+export type BoundState = ITraceSlice & IUiSlice;
 
 export type BoundStateCreator<SliceState> = StateCreator<
     BoundState,
@@ -19,6 +21,7 @@ export const useBoundStore = create<BoundState>()(
         persist(
             (...a) => ({
                 ...traceSlice(...a),
+                ...uiSlice(...a),
             }),
             {
                 name: "zustand",

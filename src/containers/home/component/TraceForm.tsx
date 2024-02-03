@@ -22,13 +22,14 @@ import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { Category } from "@prisma/client";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
 
 interface errorValue {
     code: string;
     message: string;
 }
 
-const TraceForm = () => {
+const TraceForm = (): React.ReactNode => {
 
     const {
         createTraceAttempt,
@@ -83,7 +84,7 @@ const TraceForm = () => {
     }
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-6">
                 <FormField
                     control={form.control}
                     name="meal"
@@ -182,4 +183,19 @@ const TraceForm = () => {
     );
 };
 
-export default TraceForm;
+const CreateTraceDrawer = () => {
+    const {
+        isCreateTraceDrawerOpen,
+        setIsCreateTraceDrawerOpen
+    } = useBoundStore();
+
+    return (
+        <Drawer open={isCreateTraceDrawerOpen} onClose={() => setIsCreateTraceDrawerOpen(false)}>
+            <DrawerContent className="px-6 pb-6">
+                <TraceForm />
+            </DrawerContent>
+        </Drawer>
+    )
+}
+
+export default CreateTraceDrawer;

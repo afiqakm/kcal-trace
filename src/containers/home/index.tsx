@@ -26,7 +26,8 @@ const Home = () => {
         <div className="flex flex-col gap-4 md:w-1/2">
             <StatCard />
             <TraceTable />
-            <div className={isOpen ? openClassName : closeClassName}>
+            <TraceForm />
+            {/* <div className={isOpen ? openClassName : closeClassName}>
                 <Button
                     variant="secondary"
                     onClick={() => setIsOpen(!isOpen)}
@@ -40,7 +41,7 @@ const Home = () => {
                     }
                 </Button>
                 <TraceForm />
-            </div>
+            </div> */}
         </div >
     );
 };

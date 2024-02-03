@@ -1,5 +1,7 @@
+import { type Category } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import React, { useEffect } from "react";
+import CategoryBadge from "~/components/custom/CategoryBadge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
 import { useBoundStore } from "~/store";
 import { api } from "~/utils/api";
@@ -21,6 +23,10 @@ const TraceTable = () => {
         }
     }, [action.createTrace])
 
+    const renderCategory = (category: Category) => {
+        return <CategoryBadge category={category} />
+    }
+
     return (
         <Table>
             <TableHeader>
@@ -37,7 +43,7 @@ const TraceTable = () => {
                             {item.meal}
                         </TableCell>
                         <TableCell className="text-center">
-                            {item.category}
+                            {renderCategory(item.category)}
                         </TableCell>
                         <TableCell className="md:text-center font-bold">
                             {item.kcal}

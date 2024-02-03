@@ -3,6 +3,7 @@ import { ModeToggle } from "./custom/ModeToggle";
 import { Toaster, toast } from "sonner";
 import { Button } from "./ui/button";
 import { signOut, useSession } from "next-auth/react";
+import NavMenu from "./custom/NavMenu";
 
 
 const DefaultLayout = ({ children }: { children: ReactNode }) => {
@@ -10,7 +11,7 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
     const { data, status } = useSession();
 
     return (
-        <div className="p-6 flex flex-col gap-6 h-screen md:items-center">
+        <div className="p-6 flex flex-col gap-6 md:items-center">
             <div className="w-full flex justify-end items-center">
                 <Toaster position="top-center" />
                 {/* <ModeToggle /> */}
@@ -23,6 +24,7 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
                 }
             </div>
             {children}
+            <NavMenu />
         </div>
     );
 };
