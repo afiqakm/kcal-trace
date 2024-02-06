@@ -10,4 +10,9 @@ export const uiSlice: BoundStateCreator<IUiSlice> = (
     setIsCreateTraceDrawerOpen: (value: boolean) => {
         set({ isCreateTraceDrawerOpen: value });
     },
+
+    isSetLimitDrawerOpen: false,
+    setIsSetLimitDrawerOpen: (value: boolean) => {
+        set({ isSetLimitDrawerOpen: value });
+    }
 });

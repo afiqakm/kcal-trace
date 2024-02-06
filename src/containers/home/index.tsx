@@ -9,6 +9,7 @@ import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import { ChevronsDown, ChevronsUp } from "lucide-react";
 import StatCard from "./component/StatCard";
+import SetLimitDrawer from "./component/SetCaloriesLimit";
 
 const Home = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -25,6 +26,7 @@ const Home = () => {
     return (
         <div className="flex flex-col gap-4 md:w-1/2">
             <StatCard />
+            <SetLimitDrawer />
             <TraceTable />
             <TraceForm />
             {/* <div className={isOpen ? openClassName : closeClassName}>

@@ -24,7 +24,7 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
                 }
             </div>
             {children}
-            <NavMenu />
+            {data && <NavMenu />}
         </div>
     );
 };

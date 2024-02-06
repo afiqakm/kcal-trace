@@ -21,6 +21,7 @@ const StatCard = () => {
         userId: userData?.user.id ?? "",
     });
     const {
+        setIsSetLimitDrawerOpen,
         action,
         error,
     } = useBoundStore();
@@ -36,7 +37,7 @@ const StatCard = () => {
     const renderKcal = (kcal: number) => {
         if (user) {
             const warningLimit = user.kcalLimit - 500;
-            if (kcal > 0) {
+            if (kcal > 0 && kcal < warningLimit) {
                 return (
                     <p className="text-4xl font-bold text-green-500">
                         {kcal}
@@ -70,7 +71,12 @@ const StatCard = () => {
             <CardHeader className="relative">
                 <CardTitle>Calories</CardTitle>
                 <CardDescription>Today&#39;s calories intake</CardDescription>
-                <Button variant="ghost" size='icon' className="absolute right-4 top-2">
+                <Button
+                    variant="ghost"
+                    size='icon'
+                    className="absolute right-4 top-2"
+                    onClick={() => setIsSetLimitDrawerOpen(true)}
+                >
                     <EditIcon size={20} />
                 </Button>
             </CardHeader>
@@ -85,7 +91,6 @@ const StatCard = () => {
                     <p className="text-4xl text-slate-400 font-bold">
                         {user ? user.kcalLimit : 0}
                     </p>
-
                 </div>
             </CardContent>
         </Card>
