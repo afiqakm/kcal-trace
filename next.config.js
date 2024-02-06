@@ -5,14 +5,7 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-
-import withPWAInit from "@ducanh2912/next-pwa";
-
-const withPWA = withPWAInit({
-  dest: "public",
-});
-
-const config = withPWA({
+const config = {
   reactStrictMode: true,
 
   /**
@@ -24,6 +17,6 @@ const config = withPWA({
     locales: ["en"],
     defaultLocale: "en",
   },
-});
+};
 
 export default config;

@@ -36,7 +36,7 @@ const StatCard = () => {
     const renderKcal = (kcal: number) => {
         if (user) {
             const warningLimit = user.kcalLimit - 500;
-            if (kcal > 0 && kcal < warningLimit) {
+            if (kcal > 0) {
                 return (
                     <p className="text-4xl font-bold text-green-500">
                         {kcal}
